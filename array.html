@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr=[1,2,3];
+        var arr1=[1,2,3,4,5,6];
+        arr.push(4);
+        console.log(arr);//[1,2,3,4]
+        arr.unshift(0);
+        console.log(arr);//[0,1,2,3,4]
+        arr.pop();
+        console.log(arr);//[0,1,2,3,]
+        arr.shift();
+        console.log(arr);//[1,2,3]
+        arr.splice(2,1,0);
+        console.log(arr);//[1,2,0]
+        //arr.join();
+        console.log(arr.join());//1,2,0
+        console.log(arr1.slice(2,4));//[3,4]
+        console.log(arr.concat(arr1,[3,2,1]));
+        //[1, 2, 0, 1, 2, 3, 4, 5, 6, 3, 2, 1]
+        console.log(arr.indexOf(0));//2
+        console.log(arr.lastIndexOf(2));//1
+        var arr3=[1,5,6,99,52,663,22,66,552,6,622];
+        arr3.sort(function(a,b){
+            return a-b;
+        })
+        console.log(arr3);
+        // (11) [1, 5, 6, 6, 22, 52, 66, 99, 552, 622, 663]
+        console.log(arr3.sort((a,b)=>a-b) );
+        // (11) [1, 5, 6, 6, 22, 52, 66, 99, 552, 622, 663]
+        console.log(arr3.sort((a,b)=>b-a) );
+        //(11) [663, 622, 552, 99, 66, 52, 22, 6, 6, 5, 1]
+        arr3.forEach(function(value,index){
+            console.log(index,value)
+        })
+
+        arr3.forEach((value,index)=>{console.log(index,value)})
+        //0 663 1 622 2 552 3 99 4 66 5 52 6 22 7 6 8 6 9 5 10 1
+        var newArr =arr3.filter(function(value,index){
+            return value>100;       //筛选arr数组中值大于100的元素；
+        })
+        console.log(newArr);//(3) [663, 622, 552]
+
+
+        var person = [
+            {name: "张三",age:20,sex: "男"},
+            {name: "李四",age:19,sex: "女"},
+            {name: "王五",age:22,sex: "男"},
+            {name: "赵六",age:21,sex: "女"}
+        ];
+        var x =person.filter(function(value,index){
+        return value.age>20;           // 筛选出年龄大于20岁的学生
+        // return value.sex=="男";     //筛选出男同学
+        })
+        console.log(x);/*0:{name: "王五", age: 22, sex: "男"}
+                        1: {name: "赵六", age: 21, sex: "女"}
+                        length: 2
+                        __proto__: Array(0)*/
+        var end = arr.map((value,index)=>value*2);
+        //arr3=[663, 622, 552, 99, 66, 52, 22, 6, 6, 5, 1]
+        console.log(end);//[2,4,0]
+        var end=arr3.some(function(value,index){
+        return value<500;
+        });
+        console.log(end);//true
+        var end=arr3.every(function(value,index){
+        return value<500;
+        });
+        console.log(end);//false
+        console.log(arr3.reverse()); //(11) [1, 5, 6, 6, 22, 52, 66, 99, 552, 622, 663]
+
+
+        var a={length:2,0:'aaa',1:'bbb'};  
+        console.log(Array.from(a));//['aaa','bbb']
+        var b={length:2};  
+        console.log(Array.from(b));//[undefined.undefined]
+        console.log(Array.of());// []
+        console.log(Array.of(undefined));// [undefined]
+        console.log(Array.of(1));// [1]
+        console.log(Array.of(1,2,3,4,5) );// [1,2,3,4,5]
+        var arr = [1,2,{name:"张三"}]
+        console.log(arr.includes(2));// true
+        console.log(arr.includes(4));// false
+        console.log(arr.includes({name:"张三"}));// false
+        console.log(['a','b','c','d'].includes('b')); // true
+        console.log(['a','b','c','d'].includes('b', 1) );// true
+        console.log(['a','b','c','d'].includes('b', 2) );// false
+        console.log();
+        console.log();
+        var arr=[1,2,3,4,5,6,7,8,9];
+        arr.sort(()=>Math.random()-0.5)
+        console.log(arr);//乱序排列 刷新一次就不同
+                
+     
+  
+     
+     
+
+         
+ 
+ 
+
+    </script>
+</body>
+</html>

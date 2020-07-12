@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1
+        var obj1={name:'zs'};
+        var obj2={age:18};
+        var obj3={say:function(){
+            console.log('zhangsan');
+            }
+        }
+        console.log(Object.assign(obj1,obj2,obj3));    //{name: "zs", age: 18, say: ƒ}
+        console.log(obj1,obj2);                   // {name: "zs", age: 18, say: ƒ}   {age: 18}
+        //Objectname: "zs"age: 18say: ƒ ()length: 0name: "say"arguments: nullcaller: nullprototype: constructor: ƒ ()__proto__: Object__proto__: ƒ ()arguments: (...)caller: (...)length: 0name: ""constructor: ƒ Function()apply: ƒ apply()bind: ƒ bind()call: ƒ call()toString: ƒ toString()Symbol(Symbol.hasInstance): ƒ [Symbol.hasInstance]()get arguments: ƒ ()set arguments: ƒ ()get caller: ƒ ()set caller: ƒ ()__proto__: Object[[FunctionLocation]]: <unknown>[[Scopes]]: Scopes[0][[FunctionLocation]]: object.html:13[[Scopes]]: Scopes[1]__proto__: Object
+        //Objectname: "zs"age: 18say: ƒ ()__proto__: Object Object age: 18
+        //2
+        console.log(Object.is(+0,-0));//false
+        console.log(Object.is(NaN,NaN));//true)
+        //3
+        function a(){
+        }
+        var b = new a();
+        console.log(a.prototype.isPrototypeOf(b));//true
+        //4
+        /*var obj = new Object();
+        Object.defineProperty(obj, 'name', {
+            configurable: false,
+            writable: true,
+            enumerable: true, 
+            value: '张三'
+        })
+        console.log(obj.name)  //张三*/
+        //5多个
+        var obj1 = new Object();
+        Object.defineProperties(obj1, {
+        name: {
+            value: '张三',
+            configurable: false,
+            writable: true,
+            enumerable: true
+        },
+        age: {
+            value: 18,
+            configurable: true
+        },
+        /*sex:{
+            value='man',
+            configurable: true
+            //不写的话均默认false
+        }*/
+        })
+        console.log(obj1.name,obj1.age) // 张三, 18
+        //6
+        var obj={name:'张三',age:18};
+        Object.freeze(obj)
+        obj.name='李四';//修改无效
+        obj.sex='男';//增加无效
+        console.log(obj)//{name: "张三", age: 18}
+        var obj = {name:"zhangsan",age: 20}
+        Object.freeze(obj)
+        obj.name = "lisi"//修改无效
+        console.log(obj.name)     // "zhangsan"
+        //for in 遍历
+        var obj={name:"zs",age:18,sex:"man",
+        say:function(){
+
+        }}
+        function person2(){
+            this.name="zs";
+            this.age=16;
+            this.play=function(){
+
+            }
+        }
+        var obj1=new person2();
+        class stu{
+            constructor(){
+                this.name="zs";
+                this.age=13;
+            }
+            eat(){
+                console.log("eat");
+            }
+        }
+        var obj2=new stu();
+        for(var i in obj){
+            console.log(i);
+        }//zhangsan name age sex say
+        for(var i in obj1){
+            console.log(i);
+        }// name age play
+        for(var i in obj2){
+            console.log(i);
+        }//name age
+        //keys
+        var obj = {'a':'123','b':'345'};
+        console.log(Object.keys(obj));  //(2)['a','b']
+        var obj1 = { 100: "a", 2: "b", 7: "c"};
+        console.log(Object.keys(obj1)); // (3)["2", "7", "100"]
+        var obj2 = Object.create({}, { getFoo : { value : function () { return this.foo } } });
+        obj2.foo = 1;
+        console.log(Object.keys(obj2)); // ["foo"]
+        var obj = { name: 'zhangsan', age: 20 };
+        console.log(Object.values(obj)); // (2)['zhangsan', 20]
+    </script>
+</body>
+</html>
